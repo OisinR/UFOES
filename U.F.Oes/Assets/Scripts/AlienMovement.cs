@@ -7,74 +7,72 @@ using UnityEngine.AI;
 public class AlienMovement : MonoBehaviour
 {
     Transform targetPos;
-    NavMeshPath path;
+    NavMeshPath path, agentCurrentPath;
     [SerializeField] float distanceRemaining, distanceTravelled, distanceTotal, energyConsumed;
-    LineRenderer myNavLine, myDistance;
+    [SerializeField] GameObject myNavLine, myDistance;
     public NavMeshAgent thisAlienAgent;
     GameObject ManagerObject;
     void Start()
     {
+        if(this.gameObject.GetComponent<LineRenderer>()==null)
+        {
+            this.gameObject.gameObject.AddComponent<LineRenderer>();
+
+        }
+
         targetPos = new GameObject().transform;//debugging target
         thisAlienAgent = this.gameObject.GetComponent<NavMeshAgent>();
         ManagerObject = GameObject.FindGameObjectWithTag("Manager");
         path = new NavMeshPath();
+        agentCurrentPath = new NavMeshPath();
     }
 
-    void FixedUpdate()
+    void LateUpdate()
     {
+        
         if (this.gameObject == ManagerObject.GetComponent<ControlScript>().selectedAlien)
         {
             MovementLogic();
+            
         }
+
+        DistanceRender();
+        NewPathRender();
     }
-    private void OnDrawGizmos()
-    {
-        if(targetPos!=null)
-        {
-            Gizmos.color = Color.magenta;
-            Gizmos.DrawWireSphere(targetPos.position, 3f);
-        }
-    }
-    float PathDistance(NavMeshPath inputPath)
-    {
-        float distance = 0f;
-        if (inputPath.status != NavMeshPathStatus.PathInvalid && path.corners.Length > 1)
-        {
-            for (int i = 1; i < path.corners.Length; i++)
-            {
-                distance += Vector3.Distance(path.corners[i], path.corners[i - 1]);
-            }
-        }
-        return distance;
-    }
+   
+    
+
     void MovementLogic()
     {
         RaycastHit rH;
-        Ray moveRay = Camera.main.ScreenPointToRay(Input.mousePosition);
-
-        if (Input.GetMouseButtonDown(0))
+        Ray moveRay =  Camera.main.ScreenPointToRay(Input.mousePosition);
+        
+        
+        if (Physics.Raycast(moveRay, out rH))
         {
-            if (Physics.Raycast(moveRay, out rH))
+            if (rH.collider.gameObject.tag == "Floor")
             {
-                if (rH.collider.gameObject.tag == "Floor")
+
+                if (thisAlienAgent.CalculatePath(rH.point, path))
                 {
+                    thisAlienAgent.isStopped = false;
 
-                    if (thisAlienAgent.CalculatePath(rH.point, path))
+                    targetPos.position = rH.point;//debugging
+
+                    if (Input.GetMouseButtonDown(0))
                     {
-                        thisAlienAgent.isStopped = false;
-
-                        targetPos.position = rH.point;//debugging
-                        
-                        thisAlienAgent.SetDestination(rH.point);
+                        agentCurrentPath = path;
+                        thisAlienAgent.SetPath(agentCurrentPath);
                         distanceTotal = PathDistance(thisAlienAgent.path);
-                        Debug.Log("Path length: " + distanceTotal);
                     }
+                    
                 }
-
             }
 
-
         }
+
+
+        
         distanceTravelled = DistanceTravelled(this.gameObject);
 
         if (Vector3.Distance(this.gameObject.transform.position, thisAlienAgent.destination) < 1f && thisAlienAgent.isStopped != true)
@@ -86,12 +84,62 @@ public class AlienMovement : MonoBehaviour
 
     }
 
+    #region Nav Mesh Path rendering
     void DistanceRender()
     {
         
+        var LR = myDistance.GetComponent<LineRenderer>();
+        
+        LR.positionCount = thisAlienAgent.path.corners.Length;
+        
+        LR.SetPositions(thisAlienAgent.path.corners);
+        if (this.gameObject!= ManagerObject.GetComponent<ControlScript>().selectedAlien)
+        {
+           // LR.enabled = false;
+        }
+        else
+        {
+            LR.enabled = true;
+        }
+        
+
     }
 
-    
+    void NewPathRender()
+    {
+        var LR = myNavLine.GetComponent<LineRenderer>();
+        
+        
+        LR.positionCount = path.corners.Length;
+
+        LR.SetPositions(path.corners);
+        if (this.gameObject != ManagerObject.GetComponent<ControlScript>().selectedAlien)
+        {
+            LR.enabled = false;
+        }
+        else
+        {
+            LR.enabled = true;
+        }
+
+    }
+    #endregion
+
+
+
+    float PathDistance(NavMeshPath inputPath)
+    {
+        float distance = 0f;
+        if (inputPath.status != NavMeshPathStatus.PathInvalid && path.corners.Length > 1)
+        {
+            for (int i = 1; i < path.corners.Length; i++)
+            {
+                distance += Vector3.Distance(path.corners[i], path.corners[i - 1]);
+
+            }
+        }
+        return distance;
+    }
 
     float DistanceTravelled(GameObject alien)
     {
@@ -115,4 +163,12 @@ public class AlienMovement : MonoBehaviour
 
         return distanceTravelled;
     }
+
+
+    private void OnDrawGizmos()
+    {
+        
+
+    }
+
 }
