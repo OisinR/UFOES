@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class CameraMovement : MonoBehaviour
 {
+    
     [SerializeField] float minY, maxY, minX, maxX, minZ, maxZ, moveSpeed;
     // Start is called before the first frame update
     void Start()

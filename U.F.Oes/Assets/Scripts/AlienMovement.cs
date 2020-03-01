@@ -8,15 +8,21 @@ public class AlienMovement : MonoBehaviour
 {
 
     public NavMeshAgent thisAlienAgent;
-
-    // Start is called before the first frame update
+    
     void Start()
     {
         thisAlienAgent = this.gameObject.GetComponent<NavMeshAgent>();
     }
-
-    // Update is called once per frame
+    
     void Update()
+    {
+        if(thisAlienAgent.destination!= null)
+        {
+           //Debug.Log(thisAlienAgent.remainingDistance);
+        }
+    }
+
+    private void OnDrawGizmos()
     {
         
     }
