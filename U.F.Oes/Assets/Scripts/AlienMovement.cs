@@ -6,18 +6,21 @@ using UnityEngine.AI;
 
 public class AlienMovement : MonoBehaviour
 {
+    Transform targetPos;
     NavMeshPath path;
     [SerializeField] float distanceRemaining, distanceTravelled, distanceTotal, energyConsumed;
+    LineRenderer myNavLine, myDistance;
     public NavMeshAgent thisAlienAgent;
     GameObject ManagerObject;
     void Start()
     {
+        targetPos = new GameObject().transform;//debugging target
         thisAlienAgent = this.gameObject.GetComponent<NavMeshAgent>();
         ManagerObject = GameObject.FindGameObjectWithTag("Manager");
         path = new NavMeshPath();
     }
 
-    void Update()
+    void FixedUpdate()
     {
         if (this.gameObject == ManagerObject.GetComponent<ControlScript>().selectedAlien)
         {
@@ -26,7 +29,11 @@ public class AlienMovement : MonoBehaviour
     }
     private void OnDrawGizmos()
     {
-        
+        if(targetPos!=null)
+        {
+            Gizmos.color = Color.magenta;
+            Gizmos.DrawWireSphere(targetPos.position, 3f);
+        }
     }
     float PathDistance(NavMeshPath inputPath)
     {
@@ -40,13 +47,10 @@ public class AlienMovement : MonoBehaviour
         }
         return distance;
     }
-
-
     void MovementLogic()
     {
         RaycastHit rH;
         Ray moveRay = Camera.main.ScreenPointToRay(Input.mousePosition);
-       // var AS = this.GetComponent<AlienMovement>().thisAlienAgent;
 
         if (Input.GetMouseButtonDown(0))
         {
@@ -58,6 +62,9 @@ public class AlienMovement : MonoBehaviour
                     if (thisAlienAgent.CalculatePath(rH.point, path))
                     {
                         thisAlienAgent.isStopped = false;
+
+                        targetPos.position = rH.point;//debugging
+                        
                         thisAlienAgent.SetDestination(rH.point);
                         distanceTotal = PathDistance(thisAlienAgent.path);
                         Debug.Log("Path length: " + distanceTotal);
@@ -78,6 +85,13 @@ public class AlienMovement : MonoBehaviour
 
 
     }
+
+    void DistanceRender()
+    {
+        
+    }
+
+    
 
     float DistanceTravelled(GameObject alien)
     {
