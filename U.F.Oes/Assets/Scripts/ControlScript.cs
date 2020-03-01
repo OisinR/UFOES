@@ -7,7 +7,7 @@ public class ControlScript : MonoBehaviour
 {
     ManagerScript myManager;
     [SerializeField] GameObject Alien1, Alien2, Alien3;
-    [SerializeField] GameObject selectedAlien;
+    public GameObject selectedAlien;
     NavMeshPath path;
     [SerializeField] float distanceRemaining, distanceTravelled, distanceTotal, energyConsumed;
 
@@ -23,12 +23,12 @@ public class ControlScript : MonoBehaviour
         RaycastHit rH;
         Ray moveRay = Camera.main.ScreenPointToRay(Input.mousePosition);
         var AS = selectedAlien.GetComponent<AlienMovement>().thisAlienAgent;
-        MovementLogic();
+        //MovementLogic();
        if (Input.GetMouseButtonDown(0))
         {
             if(Physics.Raycast(moveRay, out rH))
             {
-                if (rH.collider.gameObject.tag == "Alien" && Vector3.Distance(selectedAlien.transform.position, AS.destination) < 1f)
+                if (rH.collider.gameObject.tag == "Alien")
                 {
                     selectedAlien = rH.collider.gameObject;
                     Debug.Log(selectedAlien.name);
@@ -36,6 +36,7 @@ public class ControlScript : MonoBehaviour
             }
         }
     }
+    /*
     float PathDistance(NavMeshPath inputPath)
     {
         float distance = 0f;
@@ -110,4 +111,5 @@ public class ControlScript : MonoBehaviour
 
         return distanceTravelled;
     }
+    */
 }

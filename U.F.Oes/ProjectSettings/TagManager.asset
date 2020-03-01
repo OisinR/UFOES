@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Floor
   - Alien
+  - Manager
   layers:
   - Default
   - TransparentFX
