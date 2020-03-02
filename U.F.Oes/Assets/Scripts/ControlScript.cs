@@ -57,7 +57,7 @@ public class ControlScript : MonoBehaviour
         {
                 if (rH.collider.gameObject.tag == "Alien")
                 {
-                    Debug.Log("Overplayer");
+                    //Debug.Log("Overplayer");
                     if(Input.GetMouseButtonDown(0))
                     {
                         selectedAlien = rH.collider.gameObject.transform.parent.gameObject;
