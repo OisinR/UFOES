@@ -11,6 +11,10 @@ public class ManagerScript : MonoBehaviour
 
     public float maxEnergy,energyPool;
 
+    public bool playerTurn;
+
+
+
     private void Update()
     {
         //debugging for energy bar testing
@@ -19,6 +23,16 @@ public class ManagerScript : MonoBehaviour
             maxEnergy = 100f;
             energyPool = 100f;
         }
+    }
+
+    void TurnManagement()
+    {
+
+    }
+
+    public void EndTurn()
+    {
+
     }
 
 }
