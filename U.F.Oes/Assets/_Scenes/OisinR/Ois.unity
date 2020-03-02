@@ -1541,7 +1541,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!120 &962906567
 LineRenderer:
   m_ObjectHideFlags: 0
@@ -1687,8 +1687,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   number: 2
+  man: {fileID: 0}
   personalDistance: 0
   lastPoint: {x: 0, y: 0, z: 0}
+  lR: {fileID: 0}
   points: []
 --- !u!4 &962906571
 Transform:
@@ -1820,7 +1822,7 @@ GameObject:
   - component: {fileID: 1127587276}
   m_Layer: 0
   m_Name: Manager
-  m_TagString: Untagged
+  m_TagString: Manager
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1852,6 +1854,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   slider: {fileID: 278208819}
+  turnDistance: 0
   aliens: []
 --- !u!1 &1384047981
 GameObject:
@@ -2247,7 +2250,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!120 &1586981463
 LineRenderer:
   m_ObjectHideFlags: 0
@@ -2393,8 +2396,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   number: 3
+  man: {fileID: 0}
   personalDistance: 0
   lastPoint: {x: 0, y: 0, z: 0}
+  lR: {fileID: 0}
   points: []
 --- !u!4 &1586981467
 Transform:
@@ -2659,8 +2664,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   number: 1
+  man: {fileID: 0}
   personalDistance: 0
   lastPoint: {x: 0, y: 0, z: 0}
+  lR: {fileID: 0}
   points: []
 --- !u!4 &1896433994
 Transform:
