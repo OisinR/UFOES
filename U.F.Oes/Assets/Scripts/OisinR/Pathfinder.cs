@@ -7,10 +7,12 @@ using UnityEngine;
 
 public class Pathfinder : MonoBehaviour
 {
-    private float personalDistance;
-
-    private LineRenderer lR;
-
+    public int number;
+    public Manager man;
+    public float personalDistance;
+    public Vector3 lastPoint;
+    public LineRenderer lR;
+    private PathMover pm;
     public List<Vector3> points = new List<Vector3>();
 
     public Action<IEnumerable<Vector3>> OnNewPathCreated = delegate { };
@@ -18,31 +20,42 @@ public class Pathfinder : MonoBehaviour
 
     void Awake()
     {
+        man = GameObject.FindGameObjectWithTag("Manager").GetComponent<Manager>();
         lR = GetComponent<LineRenderer>();
+        pm = GetComponent<PathMover>();
+
+        lR.positionCount = 0;
     }
 
     void Update()
     {
-        if(Input.GetButtonDown("Fire1"))
+        if(number != Manager.numberSelected) { return; }
+
+        if(Input.GetButtonDown("Fire2") && !pm.turnOver)
         {         
             points.Clear();
             points.Add(transform.position);
+            man.turnDistance -= personalDistance;
+            personalDistance = 0;
         }
 
-        if(Input.GetButton("Fire1"))
+        if(Input.GetButton("Fire2"))
         {
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
             RaycastHit hit;
             if(Physics.Raycast(ray, out hit))
             {
-                if (DistanceToLastPoint(hit.point) > 1f && (!(DistanceToLastPoint(hit.point) < 3f) && Manager.turnDistance < 20))
+                if (DistanceToLastPoint(hit.point) > 1f && (!(DistanceToLastPoint(hit.point) > 3f) && man.turnDistance < Manager.turnDistanceMax))
                 {
-                    Manager.turnDistance += Vector3.Distance(points.Last(), hit.point);
+                    personalDistance += Vector3.Distance(points.Last(), hit.point);
+                    Debug.Log(personalDistance);
+                    man.turnDistance += Vector3.Distance(points.Last(), hit.point);
                     points.Add(hit.point);
 
                     lR.positionCount = points.Count;
                     lR.SetPositions(points.ToArray());
 
+                    lastPoint = hit.point;
                     
                 }
             }
@@ -51,12 +64,12 @@ public class Pathfinder : MonoBehaviour
 
         
 
-        else if (Input.GetButtonUp("Fire1"))
+        else if (Input.GetButtonUp("Fire2") && !pm.turnOver)
         {
             OnNewPathCreated(points);
         }
 
-        Debug.Log(Manager.turnDistance);
+        //Debug.Log(Manager.turnDistance);
     }
 
     private float DistanceToLastPoint(Vector3 point)

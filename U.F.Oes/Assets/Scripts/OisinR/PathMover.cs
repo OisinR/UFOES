@@ -5,7 +5,9 @@ using UnityEngine.AI;
 
 public class PathMover : MonoBehaviour
 {
+    public bool turnOver;
 
+    
     private Pathfinder pf;
     private NavMeshAgent agent;
     private Queue<Vector3> pathPoints = new Queue<Vector3>();
@@ -27,7 +29,15 @@ public class PathMover : MonoBehaviour
 
     void Update()
     {
-        UpdatePathing();
+        if (turnOver && Vector3.Distance(transform.position, pf.lastPoint) > 1f)
+        {
+            UpdatePathing();
+        }
+        if (turnOver && Vector3.Distance(transform.position, pf.lastPoint) < 1f)
+        {
+            turnOver = false;
+            pf.lR.positionCount = 0;
+        }
     }
 
     void UpdatePathing()
@@ -36,6 +46,8 @@ public class PathMover : MonoBehaviour
         {
             agent.SetDestination(pathPoints.Dequeue());
         }
+
+
     }
 
     private bool ShouldSetDestination()
