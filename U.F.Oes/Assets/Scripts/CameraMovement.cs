@@ -6,13 +6,6 @@ public class CameraMovement : MonoBehaviour
 {
     
     [SerializeField] float minY, maxY, minX, maxX, minZ, maxZ, moveSpeed;
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
     void FixedUpdate()
     {
         Vector3 newPos =Vector3.Lerp(transform.position, transform.position + (Input.GetAxis("Horizontal") * Vector3.right) +

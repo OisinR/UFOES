@@ -6,20 +6,22 @@ using UnityEngine.AI;
 
 public class AlienMovement : MonoBehaviour
 {
+    Color invalidPathColor= new Color(1,0,0), validPathColor = new Color(0,1,0);
+
     Transform targetPos;
     NavMeshPath path, agentCurrentPath;
-    [SerializeField] float distanceRemaining, distanceTravelled, distanceTotal, energyConsumed;
+    public float distanceRemaining, distanceTravelled, distanceTotal, energyConsumed, potentialDistance;
     [SerializeField] GameObject myNavLine, myDistance;
     public NavMeshAgent thisAlienAgent;
     GameObject ManagerObject;
     void Start()
     {
+
         if(this.gameObject.GetComponent<LineRenderer>()==null)
         {
             this.gameObject.gameObject.AddComponent<LineRenderer>();
 
         }
-
         targetPos = new GameObject().transform;//debugging target
         thisAlienAgent = this.gameObject.GetComponent<NavMeshAgent>();
         ManagerObject = GameObject.FindGameObjectWithTag("Manager");
@@ -33,7 +35,6 @@ public class AlienMovement : MonoBehaviour
         if (this.gameObject == ManagerObject.GetComponent<ControlScript>().selectedAlien)
         {
             MovementLogic();
-            
         }
 
         DistanceRender();
@@ -55,20 +56,39 @@ public class AlienMovement : MonoBehaviour
 
                 if (thisAlienAgent.CalculatePath(rH.point, path))
                 {
-                    thisAlienAgent.isStopped = false;
+                    
 
                     targetPos.position = rH.point;//debugging
-
-                    if (Input.GetMouseButtonDown(0))
+                    potentialDistance = PathDistance(path);
+                    if(potentialDistance > ManagerObject.GetComponent<ManagerScript>().energyPool)
                     {
+                        myNavLine.GetComponent<LineRenderer>().materials[0].color = invalidPathColor;
+
+                    }
+                    else
+                    {
+                        myNavLine.GetComponent<LineRenderer>().materials[0].color = validPathColor;
+                    }
+
+                    if (Input.GetMouseButtonDown(0) &&
+                        potentialDistance<ManagerObject.GetComponent<ManagerScript>().energyPool && 
+                        this.thisAlienAgent.isStopped==true)
+                    {
+                        thisAlienAgent.isStopped = false;
                         agentCurrentPath = path;
                         thisAlienAgent.SetPath(agentCurrentPath);
                         distanceTotal = PathDistance(thisAlienAgent.path);
+                        ManagerObject.GetComponent<ManagerScript>().energyPool -= distanceTotal;
                     }
                     
                 }
             }
 
+        }
+
+        if(Vector3.Distance(this.gameObject.transform.position,thisAlienAgent.pathEndPosition)<2f)
+        {
+            thisAlienAgent.isStopped = true;
         }
 
 
@@ -81,7 +101,7 @@ public class AlienMovement : MonoBehaviour
             thisAlienAgent.isStopped = true;
         }
 
-
+        
     }
 
     #region Nav Mesh Path rendering
@@ -143,7 +163,7 @@ public class AlienMovement : MonoBehaviour
 
     float DistanceTravelled(GameObject alien)
     {
-        //Portion of script tasked with calculating the remaining distance, navmeshagent.remainingdistance often returns "infinity"
+        // Portion of script tasked with calculating the remaining distance, navmeshagent.remainingdistance often returns "infinity"
         // due to how it is calculated. This method adds up the distance
         // this portion of code was found at: https://github.com/dumbgamedev/general-playmaker/blob/master/path/calculateAgentDistanceByCorners.cs
         
