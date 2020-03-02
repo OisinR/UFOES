@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.UI;
 
 public class ControlScript : MonoBehaviour
 {
@@ -9,12 +10,14 @@ public class ControlScript : MonoBehaviour
     [SerializeField] GameObject Alien1, Alien2, Alien3;
     public GameObject selectedAlien;
     [SerializeField]List<GameObject> Aliens;
+    [SerializeField] Image energyPool, potentialEnergy;
     NavMeshPath path;
     LayerMask onlyRaycastMask;
     //[SerializeField] float distanceRemaining, distanceTravelled, distanceTotal, energyConsumed;
 
     void Start()
     {
+        
         Aliens = new List<GameObject>();
         foreach(AlienMovement alien in  GameObject.FindObjectsOfType<AlienMovement>())
         {
@@ -26,7 +29,7 @@ public class ControlScript : MonoBehaviour
         
     }
     
-
+    
 
     void FixedUpdate()
     {
@@ -67,7 +70,14 @@ public class ControlScript : MonoBehaviour
                 }
             
         }
-        
+        EnergyBarUpdates();
+
+    }
+    void EnergyBarUpdates()
+    {
+        energyPool.transform.localScale = new Vector3(energyPool.transform.localScale.x, myManager.energyPool / myManager.maxEnergy, energyPool.transform.localScale.z);
+        potentialEnergy.transform.localScale = new Vector3(potentialEnergy.transform.localScale.x, Mathf.Min(selectedAlien.GetComponent<AlienMovement>().potentialDistance/ myManager.energyPool,1f), potentialEnergy.transform.localScale.z);
+
     }
 
     private void OnDrawGizmos()

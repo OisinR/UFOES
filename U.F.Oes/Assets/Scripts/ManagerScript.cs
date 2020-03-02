@@ -10,10 +10,15 @@ public class ManagerScript : MonoBehaviour
     // stuff so its needs the information from one source, the manager game object and its ManagerScript.cs component
 
     public float maxEnergy,energyPool;
-    
-    void Start()
+
+    private void Update()
     {
-        
+        //debugging for energy bar testing
+        if(Input.GetKeyDown(KeyCode.R))
+        {
+            maxEnergy = 100f;
+            energyPool = 100f;
+        }
     }
-    
+
 }
