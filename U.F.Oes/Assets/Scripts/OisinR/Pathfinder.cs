@@ -54,11 +54,6 @@ public class Pathfinder : MonoBehaviour
                     //Make sure the points are within walking reach of each other/not through a wall
                     if (!Navmeshable(hit.point)) { return; }
 
-                    personalDistance += Vector3.Distance(points.Last(), hit.point);
-                    //Debug.Log(personalDistance);
-                    man.turnDistance += Vector3.Distance(points.Last(), hit.point);
-                    points.Add(hit.point);
-
                     lR.positionCount = points.Count;
                     lR.SetPositions(points.ToArray());
 
@@ -75,8 +70,6 @@ public class Pathfinder : MonoBehaviour
         {
             OnNewPathCreated(points);
         }
-
-        //Debug.Log(Manager.turnDistance);
     }
 
     private float DistanceToLastPoint(Vector3 point)
@@ -103,6 +96,13 @@ public class Pathfinder : MonoBehaviour
         }
         else
         {
+            foreach (Vector3 p in path.corners)
+            {    
+                    personalDistance += Vector3.Distance(points.Last(), p);
+                    Debug.Log(personalDistance);
+                    man.turnDistance += Vector3.Distance(points.Last(), p);
+                    points.Add(p);
+            }         
             return true;
         }
     }

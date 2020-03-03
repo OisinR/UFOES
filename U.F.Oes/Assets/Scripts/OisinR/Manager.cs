@@ -7,7 +7,7 @@ public class Manager : MonoBehaviour
 {
     public RectTransform slider;
 
-    public static float turnDistanceMax = 100;
+    public static float turnDistanceMax;
     public float turnDistance;
     private bool waitingForTurn;
     public PathMover[] aliens;
@@ -16,6 +16,7 @@ public class Manager : MonoBehaviour
     void Start()
     {
         aliens = FindObjectsOfType<PathMover>();
+        NewRound();
     }
 
     private void Update()
@@ -43,12 +44,13 @@ public class Manager : MonoBehaviour
     void ScaleBar()
     {
         slider.localScale = new Vector3(1, 1 - (turnDistance/turnDistanceMax), 1);
+        //Debug.Log(1 - (turnDistance / turnDistanceMax));
     }
 
     public void NewRound()
     {
         //Debug.Log(23423452525);
-        turnDistanceMax = 100;
+        turnDistanceMax = 20;
     }
 
 
