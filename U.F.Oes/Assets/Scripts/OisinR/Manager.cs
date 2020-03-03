@@ -11,9 +11,15 @@ public class Manager : MonoBehaviour
     public static float turnDistanceMax = 50;
     public static float turnDistanceTotal = 20;
     public static float turnDistance;
+
+    public static int TechHigh, Techlow;
+
     private bool waitingForTurn;
     public PathMover[] aliens;
     public static int numberSelected = 0;
+
+    public float x, y, z;
+
 
     void Start()
     {
@@ -23,6 +29,12 @@ public class Manager : MonoBehaviour
 
     private void Update()
     {
+        if(turnDistanceTotal > turnDistanceMax)
+        {
+            turnDistanceTotal = turnDistanceMax;
+        }
+
+        //Debug.Log(turnDistanceTotal+ " " + turnDistanceMax);
         ScaleBar();
         if(waitingForTurn)
         {
@@ -38,10 +50,10 @@ public class Manager : MonoBehaviour
             waitingForTurn = false;
         }
     }
-
+    //new Vector3(1, 1 - (turnDistanceTotal / turnDistanceMax), 1);
     void ScaleBar()
     {
-        sliderBackground.localScale = new Vector3(1, 1 - (turnDistanceTotal / turnDistanceMax), 1);
+        sliderBackground.localScale = new Vector3(1, (turnDistanceTotal / turnDistanceMax), 1);
 
         float scale = 1 - (turnDistance / turnDistanceTotal);
         if(scale < 0)
@@ -53,7 +65,7 @@ public class Manager : MonoBehaviour
 
     public void NewRound()
     {
-        turnDistanceTotal = 20;
+        //turnDistanceTotal = 20;
         turnDistance = 0;
     }
 

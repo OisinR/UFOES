@@ -33,7 +33,12 @@ public class Pathfinder : MonoBehaviour
         path = new NavMeshPath();
         if (number != Manager.numberSelected) { return; }
 
-        if(Input.GetButtonDown("Fire2") && !pm.turnOver)
+        if(pm.turnOver)
+        {
+            personalDistance = 0;
+        }
+
+        if (Input.GetButtonDown("Fire2") && !pm.turnOver)
         {         
             if(points.Count > 1)
             {
@@ -100,7 +105,7 @@ public class Pathfinder : MonoBehaviour
             foreach (Vector3 p in path.corners)
             {    
                     personalDistance += Vector3.Distance(points.Last(), p);
-                    Debug.Log(personalDistance);
+                    //Debug.Log(personalDistance);
                     Manager.turnDistance += Vector3.Distance(points.Last(), p);
                     points.Add(p);
             }         

@@ -5,7 +5,7 @@ using UnityEngine;
 public class EnergyPad : MonoBehaviour
 {
 
-
+    bool activated;
 
     void Start()
     {
@@ -24,7 +24,10 @@ public class EnergyPad : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        //Manager.turnDistanceMax += 10;
-        Manager.turnDistanceTotal += 10;
+        if (!activated)
+        {
+            Manager.turnDistanceTotal += 10;
+            activated = true;
+        }
     }
 }
