@@ -6,9 +6,11 @@ using UnityEngine.UI;
 public class Manager : MonoBehaviour
 {
     public RectTransform slider;
+    public RectTransform sliderBackground;
 
-    public static float turnDistanceMax;
-    public float turnDistance;
+    public static float turnDistanceMax = 50;
+    public static float turnDistanceTotal = 20;
+    public static float turnDistance;
     private bool waitingForTurn;
     public PathMover[] aliens;
     public static int numberSelected = 0;
@@ -22,9 +24,6 @@ public class Manager : MonoBehaviour
     private void Update()
     {
         ScaleBar();
-
-        //Debug.Log(turnDistance);
-
         if(waitingForTurn)
         {
             foreach (PathMover p in aliens)
@@ -35,7 +34,6 @@ public class Manager : MonoBehaviour
                     return;
                 }
             }
-            //Debug.Log(2342342);
             NewRound();
             waitingForTurn = false;
         }
@@ -43,14 +41,20 @@ public class Manager : MonoBehaviour
 
     void ScaleBar()
     {
-        slider.localScale = new Vector3(1, 1 - (turnDistance/turnDistanceMax), 1);
-        //Debug.Log(1 - (turnDistance / turnDistanceMax));
+        sliderBackground.localScale = new Vector3(1, 1 - (turnDistanceTotal / turnDistanceMax), 1);
+
+        float scale = 1 - (turnDistance / turnDistanceTotal);
+        if(scale < 0)
+        {
+            scale = 0;
+        }
+        slider.localScale = new Vector3(1, scale, 1);
     }
 
     public void NewRound()
     {
-        //Debug.Log(23423452525);
-        turnDistanceMax = 20;
+        turnDistanceTotal = 20;
+        turnDistance = 0;
     }
 
 
@@ -61,7 +65,7 @@ public class Manager : MonoBehaviour
             p.turnOver = true;
         }
         waitingForTurn = true;
-        turnDistance = 0;
+       
     }
 
 

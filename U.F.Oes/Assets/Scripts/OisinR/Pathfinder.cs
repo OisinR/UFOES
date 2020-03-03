@@ -22,8 +22,6 @@ public class Pathfinder : MonoBehaviour
 
     void Awake()
     {
-        
-        man = GameObject.FindGameObjectWithTag("Manager").GetComponent<Manager>();
         lR = GetComponent<LineRenderer>();
         pm = GetComponent<PathMover>();
         agent = GetComponent<NavMeshAgent>();
@@ -37,10 +35,13 @@ public class Pathfinder : MonoBehaviour
 
         if(Input.GetButtonDown("Fire2") && !pm.turnOver)
         {         
+            if(points.Count > 1)
+            {
+                Manager.turnDistance -= personalDistance;
+                personalDistance = 0;
+            }
             points.Clear();
             points.Add(transform.position);
-            man.turnDistance -= personalDistance;
-            personalDistance = 0;
         }
 
         if(Input.GetButton("Fire2"))
@@ -49,7 +50,7 @@ public class Pathfinder : MonoBehaviour
             RaycastHit hit;
             if(Physics.Raycast(ray, out hit))
             {
-                if (DistanceToLastPoint(hit.point) > 1f && (!(DistanceToLastPoint(hit.point) > 3f) && man.turnDistance < Manager.turnDistanceMax))
+                if (DistanceToLastPoint(hit.point) > 1f && (!(DistanceToLastPoint(hit.point) > 3f) && Manager.turnDistance < Manager.turnDistanceTotal))
                 {
                     //Make sure the points are within walking reach of each other/not through a wall
                     if (!Navmeshable(hit.point)) { return; }
@@ -100,7 +101,7 @@ public class Pathfinder : MonoBehaviour
             {    
                     personalDistance += Vector3.Distance(points.Last(), p);
                     Debug.Log(personalDistance);
-                    man.turnDistance += Vector3.Distance(points.Last(), p);
+                    Manager.turnDistance += Vector3.Distance(points.Last(), p);
                     points.Add(p);
             }         
             return true;
