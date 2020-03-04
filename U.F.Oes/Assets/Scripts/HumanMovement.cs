@@ -147,7 +147,7 @@ public class HumanMovement : MonoBehaviour
             }
             Debug.Log("Deactivated");
             ActivateCheck = false ;
-            myManager.maxEnergy += myManager.replenRate;
+            myManager.energyPool += myManager.replenRate;
             myManager.playerTurn = true;
         }
 

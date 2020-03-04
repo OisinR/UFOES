@@ -1236,8 +1236,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9a7aede1f7894fc4aa0387e1e519071f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxEnergy: 60.08
-  energyPool: 20
+  maxEnergy: 60
+  energyPool: 60
   replenRate: 10
   playerTurn: 1
 --- !u!1 &346659865
