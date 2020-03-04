@@ -36,6 +36,7 @@ public class PathMover : MonoBehaviour
         if (turnOver && Vector3.Distance(transform.position, pf.lastPoint) < 1f)
         {
             turnOver = false;
+            pf.points.Clear();
             pf.lR.positionCount = 0;
         }
     }

@@ -6,24 +6,36 @@ using UnityEngine.UI;
 public class Manager : MonoBehaviour
 {
     public RectTransform slider;
+    public RectTransform sliderBackground;
 
-    public static float turnDistanceMax = 100;
-    public float turnDistance;
+    public static float turnDistanceMax = 50;
+    public static float turnDistanceTotal = 20;
+    public static float turnDistance;
+
+    public static int TechHigh, Techlow;
+
     private bool waitingForTurn;
     public PathMover[] aliens;
     public static int numberSelected = 0;
 
+    public float x, y, z;
+
+
     void Start()
     {
         aliens = FindObjectsOfType<PathMover>();
+        NewRound();
     }
 
     private void Update()
     {
+        if(turnDistanceTotal > turnDistanceMax)
+        {
+            turnDistanceTotal = turnDistanceMax;
+        }
+
+        //Debug.Log(turnDistanceTotal+ " " + turnDistanceMax);
         ScaleBar();
-
-        //Debug.Log(turnDistance);
-
         if(waitingForTurn)
         {
             foreach (PathMover p in aliens)
@@ -34,21 +46,27 @@ public class Manager : MonoBehaviour
                     return;
                 }
             }
-            //Debug.Log(2342342);
             NewRound();
             waitingForTurn = false;
         }
     }
-
+    //new Vector3(1, 1 - (turnDistanceTotal / turnDistanceMax), 1);
     void ScaleBar()
     {
-        slider.localScale = new Vector3(1, 1 - (turnDistance/turnDistanceMax), 1);
+        sliderBackground.localScale = new Vector3(1, (turnDistanceTotal / turnDistanceMax), 1);
+
+        float scale = 1 - (turnDistance / turnDistanceTotal);
+        if(scale < 0)
+        {
+            scale = 0;
+        }
+        slider.localScale = new Vector3(1, scale, 1);
     }
 
     public void NewRound()
     {
-        //Debug.Log(23423452525);
-        turnDistanceMax = 100;
+        //turnDistanceTotal = 20;
+        turnDistance = 0;
     }
 
 
@@ -59,7 +77,7 @@ public class Manager : MonoBehaviour
             p.turnOver = true;
         }
         waitingForTurn = true;
-        turnDistance = 0;
+       
     }
 
 
