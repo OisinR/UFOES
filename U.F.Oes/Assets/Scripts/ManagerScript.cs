@@ -11,7 +11,7 @@ public class ManagerScript : MonoBehaviour
 
     public float maxEnergy,energyPool;
 
-    public bool playerTurn;
+    public bool playerTurn = true;
 
 
 
