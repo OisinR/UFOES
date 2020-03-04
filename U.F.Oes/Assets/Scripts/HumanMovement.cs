@@ -34,13 +34,16 @@ public class HumanMovement : MonoBehaviour
 
     NavMeshAgent humanNavAgent;
     #endregion
+
+    ManagerScript myManager;
     private void Awake()
     {
+
         SafeDistance = DetectionRadius;
         SC = this.GetComponent<SphereCollider>();
         SC.radius = DetectionRadius;
         detectionRay = new Ray();
-
+        myManager = GameObject.FindGameObjectWithTag("Manager").GetComponent<ManagerScript>();
         humanNavAgent = this.gameObject.GetComponent<NavMeshAgent>();
         CurrentPath = new PathObject();
         CurrentPath = KitchenPath;
@@ -49,27 +52,30 @@ public class HumanMovement : MonoBehaviour
 
     private void FixedUpdate()
     {
-        switch (CurrentPathIndex)
+        if (myManager.playerTurn == false)
         {
-            case 1:
-                CurrentPath = KitchenPath;
-                break;
-            case 2:
-                CurrentPath = GardenPath;
-                break;
-            case 3:
-                CurrentPath = BathroomPath;
-                break;
-            case 4:
-                CurrentPath = BedroomPath;
-                break;
-            case 5:
-                CurrentPath = LivingPath;
-                break;
-        }
+            switch (CurrentPathIndex)
+            {
+                case 1:
+                    CurrentPath = KitchenPath;
+                    break;
+                case 2:
+                    CurrentPath = GardenPath;
+                    break;
+                case 3:
+                    CurrentPath = BathroomPath;
+                    break;
+                case 4:
+                    CurrentPath = BedroomPath;
+                    break;
+                case 5:
+                    CurrentPath = LivingPath;
+                    break;
+            }
 
-        MoveToWaypoint(CurrentPath);
-        AlienDetection();
+            MoveToWaypoint(CurrentPath);
+            AlienDetection();
+        }
         
     }
     
@@ -90,6 +96,7 @@ public class HumanMovement : MonoBehaviour
             else
             {
                 Debug.Log("Switching");
+                
                 CurrentPathIndex = Random.Range(1, 6);
                 CurrentPathPoint = 0;
 
@@ -140,6 +147,7 @@ public class HumanMovement : MonoBehaviour
             }
             Debug.Log("Deactivated");
             ActivateCheck = false ;
+            myManager.playerTurn = true;
         }
 
 

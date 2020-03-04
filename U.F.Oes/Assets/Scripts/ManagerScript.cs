@@ -13,7 +13,10 @@ public class ManagerScript : MonoBehaviour
 
     public bool playerTurn = true;
 
-
+    private void Awake()
+    {
+        playerTurn = true;
+    }
 
     private void Update()
     {
@@ -32,7 +35,7 @@ public class ManagerScript : MonoBehaviour
 
     public void EndTurn()
     {
-
+        playerTurn = false;
     }
 
 }
