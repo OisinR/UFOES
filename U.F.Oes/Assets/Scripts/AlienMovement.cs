@@ -39,9 +39,10 @@ public class AlienMovement : MonoBehaviour
                 MovementLogic();
             }
 
-            DistanceRender();
-            NewPathRender();
+            
         }
+        DistanceRender();
+        NewPathRender();
     }
    
     

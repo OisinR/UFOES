@@ -147,6 +147,7 @@ public class HumanMovement : MonoBehaviour
             }
             Debug.Log("Deactivated");
             ActivateCheck = false ;
+            myManager.maxEnergy += myManager.replenRate;
             myManager.playerTurn = true;
         }
 
@@ -181,17 +182,7 @@ public class HumanMovement : MonoBehaviour
         */
         #endregion
     }
-
-    /*
-    private void OnTriggerStay(Collider other)
-    {
-        if (other.gameObject.tag == "Alien")
-        {
-            //AlienDetection(other.gameObject);
-
-        }
-    }
-    */
+    
     bool Hidden(GameObject Alien)
     {
         float Distance = Vector3.Distance(this.transform.position, Alien.transform.position);
@@ -264,6 +255,7 @@ public class HumanMovement : MonoBehaviour
         Gizmos.color = Color.green;
         Gizmos.DrawWireSphere(this.transform.position, SafeDistance);
     }
+
     //Code from Sebastian Lague found here: https://www.youtube.com/watch?v=73Dc5JTCmKI
 
     /*
