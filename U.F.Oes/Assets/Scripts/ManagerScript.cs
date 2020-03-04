@@ -9,7 +9,14 @@ public class ManagerScript : MonoBehaviour
     // necessarry) as much as possible. E.g. The alien movement will need access to the current turn state, the energy pool and other 
     // stuff so its needs the information from one source, the manager game object and its ManagerScript.cs component
 
-    public float maxEnergy,energyPool;
+    public float maxEnergy,energyPool, replenRate;
+
+    public bool playerTurn = true;
+
+    private void Awake()
+    {
+        playerTurn = true;
+    }
 
     private void Update()
     {
@@ -19,6 +26,16 @@ public class ManagerScript : MonoBehaviour
             maxEnergy = 100f;
             energyPool = 100f;
         }
+    }
+
+    void TurnManagement()
+    {
+
+    }
+
+    public void EndTurn()
+    {
+        playerTurn = false;
     }
 
 }
