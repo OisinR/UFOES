@@ -4,30 +4,19 @@ using UnityEngine;
 
 public class Inventory : MonoBehaviour
 {
-    public bool hasItem;
-    public bool highValue;
-
-
-    public GameObject high, low;
+    public bool hasItem, canDisplay;
+    public int itemNum;
 
 
     void Update()
     {
-        if(hasItem)
+        if(hasItem && canDisplay)
         {
-            if(highValue)
-            {
-                high.SetActive(true);
-            }
-            else
-            {
-                low.SetActive(true);
-            }
+            ItemList.spriteNum = itemNum;
         }
         else
         {
-            high.SetActive(false);
-            low.SetActive(false);
+
         }
     }
 }

@@ -5,7 +5,7 @@ using UnityEngine.AI;
 
 public class HumanMovement : MonoBehaviour
 {
-
+    Animator anim;
    
     [Header("Detection")]
     #region Detection Stuff
@@ -38,7 +38,7 @@ public class HumanMovement : MonoBehaviour
     ManagerScript myManager;
     private void Awake()
     {
-
+        anim = GetComponentInChildren<Animator>();
         SafeDistance = DetectionRadius;
         SC = this.GetComponent<SphereCollider>();
         SC.radius = DetectionRadius;
@@ -83,11 +83,12 @@ public class HumanMovement : MonoBehaviour
     void MoveToWaypoint(PathObject following)
     {
         Transform destPoint = following.pathPoints[CurrentPathPoint];
-
+        anim.SetBool("Walk", true);
         humanNavAgent.SetDestination(following.pathPoints[CurrentPathPoint].position);
 
         if (Vector3.Distance(transform.position, destPoint.position) < 2f)
         {
+            anim.SetBool("Walk", false);
             ActivateCheck=true;
             if (CurrentPathPoint < following.pathPoints.Count - 1)
             {

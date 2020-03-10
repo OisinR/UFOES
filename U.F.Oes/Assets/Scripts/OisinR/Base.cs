@@ -27,20 +27,13 @@ public class Base : MonoBehaviour
         {
             if (other.gameObject.GetComponent<Inventory>().hasItem)
             {
-                if (other.gameObject.GetComponent<Inventory>().highValue)
+                if (other.gameObject.GetComponent<Inventory>().hasItem)
                 {
-                    Manager.TechHigh++;
-                    h.text = "High Value Items: " + Manager.TechHigh;
-
                     other.gameObject.GetComponent<Inventory>().hasItem = false;
-                    other.gameObject.GetComponent<Inventory>().highValue = false;
                 }
                 else
                 {
-                    Manager.Techlow++;
-                    l.text = "Low Value Items: " + Manager.Techlow;
                     other.gameObject.GetComponent<Inventory>().hasItem = false;
-                    other.gameObject.GetComponent<Inventory>().highValue = false;
                 }
             }
 

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class TechItem : MonoBehaviour
 {
-    public bool highTech, lowTech;
+    public int techItemNum;
 
 
     private void OnTriggerEnter(Collider other)
@@ -15,17 +15,7 @@ public class TechItem : MonoBehaviour
             Debug.Log(2);
             if (!other.gameObject.GetComponent<Inventory>().hasItem)
             {
-                Debug.Log(3);
-                if (highTech)
-                {
-                    other.gameObject.GetComponent<Inventory>().hasItem = true;
-                    other.gameObject.GetComponent<Inventory>().highValue = true;
-                }
-                if (lowTech)
-                {
-                    other.gameObject.GetComponent<Inventory>().hasItem = true;
-                    other.gameObject.GetComponent<Inventory>().highValue = false;
-                }
+                other.gameObject.GetComponent<Inventory>().itemNum = techItemNum;
                 gameObject.SetActive(false);
             }
 
