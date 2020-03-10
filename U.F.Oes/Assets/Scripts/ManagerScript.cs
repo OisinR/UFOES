@@ -11,6 +11,8 @@ public class ManagerScript : MonoBehaviour
 
     public float maxEnergy,energyPool, replenRate;
 
+    public static bool powerup;
+
     public bool playerTurn = true;
 
     private void Awake()
@@ -26,12 +28,24 @@ public class ManagerScript : MonoBehaviour
             maxEnergy = 100f;
             energyPool = 100f;
         }
+
+        if(powerup)
+        {
+            energyPool += replenRate;
+            powerup = false;
+        }
+
+        if(energyPool > maxEnergy)
+        {
+            energyPool = maxEnergy;
+        }
     }
 
     void TurnManagement()
     {
 
     }
+
 
     public void EndTurn()
     {
