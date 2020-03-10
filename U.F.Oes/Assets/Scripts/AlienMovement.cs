@@ -14,8 +14,12 @@ public class AlienMovement : MonoBehaviour
     [SerializeField] GameObject myNavLine, myDistance;
     public NavMeshAgent thisAlienAgent;
     GameObject ManagerObject;
+
+    Animator anim;
+
     void Start()
     {
+        anim = GetComponentInChildren<Animator>();
 
         if(this.gameObject.GetComponent<LineRenderer>()==null)
         {
@@ -78,6 +82,7 @@ public class AlienMovement : MonoBehaviour
                         potentialDistance<ManagerObject.GetComponent<ManagerScript>().energyPool && 
                         this.thisAlienAgent.isStopped==true)
                     {
+                        anim.SetBool("Walk", true);
                         thisAlienAgent.isStopped = false;
                         agentCurrentPath = path;
                         thisAlienAgent.SetPath(agentCurrentPath);
@@ -92,6 +97,7 @@ public class AlienMovement : MonoBehaviour
 
         if(Vector3.Distance(this.gameObject.transform.position,thisAlienAgent.pathEndPosition)<2f)
         {
+            anim.SetBool("Walk", false);
             thisAlienAgent.isStopped = true;
         }
 

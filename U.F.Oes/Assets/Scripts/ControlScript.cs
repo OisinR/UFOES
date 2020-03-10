@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class ControlScript : MonoBehaviour
 {
@@ -31,6 +32,12 @@ public class ControlScript : MonoBehaviour
 
     private void Update()
     {
+        if(Input.GetKeyDown(KeyCode.Escape))
+        {
+            SceneManager.LoadScene(0);
+        }
+
+
         if (Input.GetKeyDown(KeyCode.Keypad1))
         {
             selectedAlien = Aliens[0];
