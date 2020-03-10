@@ -31,12 +31,16 @@ public class AlienMovement : MonoBehaviour
 
     void LateUpdate()
     {
-        
-        if (this.gameObject == ManagerObject.GetComponent<ControlScript>().selectedAlien)
+        if (ManagerObject.GetComponent<ManagerScript>().playerTurn == true)
         {
-            MovementLogic();
-        }
 
+            if (this.gameObject == ManagerObject.GetComponent<ControlScript>().selectedAlien)
+            {
+                MovementLogic();
+            }
+
+            
+        }
         DistanceRender();
         NewPathRender();
     }
