@@ -45,7 +45,6 @@ public class HumanMovement : MonoBehaviour
         detectionRay = new Ray();
         myManager = GameObject.FindGameObjectWithTag("Manager").GetComponent<ManagerScript>();
         humanNavAgent = this.gameObject.GetComponent<NavMeshAgent>();
-        //CurrentPath = new PathObject();
         CurrentPath = KitchenPath;
         CurrentPathPoint = 0;
     }
