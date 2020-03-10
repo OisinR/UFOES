@@ -47,7 +47,11 @@ public class HumanMovement : MonoBehaviour
         humanNavAgent = this.gameObject.GetComponent<NavMeshAgent>();
         CurrentPath = KitchenPath;
         CurrentPathPoint = 0;
+        InvokeRepeating("AlienDetection", 2f, 2f);
+
     }
+
+    
 
     private void FixedUpdate()
     {
@@ -73,9 +77,8 @@ public class HumanMovement : MonoBehaviour
             }
 
             MoveToWaypoint(CurrentPath);
-            AlienDetection();
+            //AlienDetection();
         }
-        
     }
     
 
@@ -101,7 +104,8 @@ public class HumanMovement : MonoBehaviour
                 CurrentPathPoint = 0;
 
             }
-
+            myManager.playerTurn = true;
+            myManager.energyPool += myManager.replenRate;
         }
     }
 
@@ -109,8 +113,6 @@ public class HumanMovement : MonoBehaviour
     void AlienDetection()
     {
         
-        if (ActivateCheck)
-        {
             Debug.Log("Activates");
             Collider[] objectColliders = Physics.OverlapSphere(this.transform.position, DetectionRadius);
 
@@ -146,10 +148,7 @@ public class HumanMovement : MonoBehaviour
                 }
             }
             Debug.Log("Deactivated");
-            ActivateCheck = false ;
-            myManager.energyPool += myManager.replenRate;
-            myManager.playerTurn = true;
-        }
+            
 
 
 
