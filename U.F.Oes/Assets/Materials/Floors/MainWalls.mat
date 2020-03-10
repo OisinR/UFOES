@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: BedroomFloor
+  m_Name: MainWalls
   m_Shader: {fileID: 46, guid: 0000000000000000f000000000000000, type: 0}
   m_ShaderKeywords: _EMISSION _GLOSSYREFLECTIONS_OFF _SPECULARHIGHLIGHTS_OFF
   m_LightmapFlags: 2
@@ -73,5 +73,5 @@ Material:
     - _UVSec: 0
     - _ZWrite: 1
     m_Colors:
-    - _Color: {r: 0.39186543, g: 0.41342944, b: 0.6981132, a: 1}
-    - _EmissionColor: {r: 0.51891243, g: 0.54275805, b: 0.6509434, a: 1}
+    - _Color: {r: 0.7169812, g: 0.6664099, b: 0.6053756, a: 1}
+    - _EmissionColor: {r: 0.4056604, g: 0.30520204, b: 0.2047437, a: 1}
