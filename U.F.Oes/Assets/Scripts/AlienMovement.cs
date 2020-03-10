@@ -41,9 +41,7 @@ public class AlienMovement : MonoBehaviour
             if (this.gameObject == ManagerObject.GetComponent<ControlScript>().selectedAlien)
             {
                 MovementLogic();
-            }
-
-            
+            }   
         }
         DistanceRender();
         NewPathRender();

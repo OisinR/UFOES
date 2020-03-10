@@ -25,6 +25,7 @@ public class ControlScript : MonoBehaviour
             Aliens.Add(alien.gameObject);
         }
         selectedAlien = Alien1;
+        CamControllerOis.target = selectedAlien;
         path = new NavMeshPath();
         myManager = this.gameObject.GetComponent<ManagerScript>();
         
@@ -53,6 +54,7 @@ public class ControlScript : MonoBehaviour
             selectedAlien = Aliens[2];
 
         }
+        CamControllerOis.target = selectedAlien;
     }
 
     public void ChooseAlien(int i)
@@ -72,6 +74,8 @@ public class ControlScript : MonoBehaviour
             selectedAlien = Aliens[2];
 
         }
+
+
     }
 
 
@@ -84,6 +88,7 @@ public class ControlScript : MonoBehaviour
         
 
         var AS = selectedAlien.GetComponent<AlienMovement>().thisAlienAgent;
+        
 
         //Selecting Alien: At this point their is an issue with raycasts that I cant figure out, Im adding key input selection as a debugging tool
         //if (Physics.Raycast(this.transform.position, moveRay.direction*100f, out rH, Mathf.Infinity, 1 << LayerMask.NameToLayer("OnlyRaycasts")))
