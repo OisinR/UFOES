@@ -5,35 +5,52 @@ using UnityEngine.UI;
 
 public class Base : MonoBehaviour
 {
+    public int item1, item2;
+    bool collected1, collected2;
 
+    public bool complete;
+    public GameObject[] itemsDisplay;
+    Inventory script;
 
-    // Start is called before the first frame update
-    void Start()
+    private void Update()
     {
-        
-    }
+        if(collected1)
+        {
+            itemsDisplay[0].SetActive(false);
+        }
 
-    // Update is called once per frame
-    void Update()
-    {
+        if (collected2)
+        {
+            itemsDisplay[1].SetActive(false);
+        }
         
-    }
+        if(collected1 && collected2)
+        {
+            complete = true;
+        }
 
+    }
 
     private void OnTriggerEnter(Collider other)
     {
 
         if (other.gameObject.tag == "Alien")
         {
-            if (other.gameObject.GetComponent<Inventory>().hasItem)
+            script = other.gameObject.GetComponent<Inventory>();
+
+            if (script.hasItem)
             {
-                if (other.gameObject.GetComponent<Inventory>().hasItem)
+                if (script.itemNum == item1)
                 {
-                    other.gameObject.GetComponent<Inventory>().hasItem = false;
+                    script.itemNum = 0;
+                    collected1 = true;
+                    script.hasItem = false;
                 }
-                else
+                if (script.itemNum == item2)
                 {
-                    other.gameObject.GetComponent<Inventory>().hasItem = false;
+                    script.itemNum = 0;
+                    collected2 = true;
+                    script.hasItem = false;
                 }
             }
 

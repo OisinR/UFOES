@@ -7,27 +7,14 @@ public class EnergyPad : MonoBehaviour
 
     bool activated;
 
-    void Start()
-    {
-        
-    }
-
-
-
-
-    void Update()
-    {
-        
-    }
-
-
 
     private void OnTriggerEnter(Collider other)
     {
-        if (!activated)
+        if (!activated && other.gameObject.tag == "Alien")
         {
-            Manager.turnDistanceTotal += 10;
+            ManagerScript.powerup = true;
             activated = true;
+            gameObject.SetActive(false);
         }
     }
 }
