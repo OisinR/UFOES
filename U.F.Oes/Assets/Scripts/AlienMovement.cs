@@ -70,12 +70,12 @@ public class AlienMovement : MonoBehaviour
                     potentialDistance = PathDistance(path);
                     if(potentialDistance > ManagerObject.GetComponent<ManagerScript>().energyPool)
                     {
-                        myNavLine.GetComponent<LineRenderer>().materials[0].color = invalidPathColor;
+                        myNavLine.GetComponent<LineRenderer>().materials[0].SetColor("_EmissionColor", invalidPathColor);
 
                     }
                     else
                     {
-                        myNavLine.GetComponent<LineRenderer>().materials[0].color = validPathColor;
+                        myNavLine.GetComponent<LineRenderer>().materials[0].SetColor("_EmissionColor", validPathColor);
                     }
 
                     if (Input.GetMouseButtonDown(0) &&
