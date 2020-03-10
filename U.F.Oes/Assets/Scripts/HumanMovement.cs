@@ -45,7 +45,7 @@ public class HumanMovement : MonoBehaviour
         detectionRay = new Ray();
         myManager = GameObject.FindGameObjectWithTag("Manager").GetComponent<ManagerScript>();
         humanNavAgent = this.gameObject.GetComponent<NavMeshAgent>();
-        CurrentPath = new PathObject();
+        //CurrentPath = new PathObject();
         CurrentPath = KitchenPath;
         CurrentPathPoint = 0;
     }
@@ -86,7 +86,7 @@ public class HumanMovement : MonoBehaviour
 
         humanNavAgent.SetDestination(following.pathPoints[CurrentPathPoint].position);
 
-        if (Vector3.Distance(this.transform.position, destPoint.position) < 1f)
+        if (Vector3.Distance(transform.position, destPoint.position) < 2f)
         {
             ActivateCheck=true;
             if (CurrentPathPoint < following.pathPoints.Count - 1)
