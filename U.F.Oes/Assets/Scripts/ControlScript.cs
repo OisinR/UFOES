@@ -28,14 +28,9 @@ public class ControlScript : MonoBehaviour
         myManager = this.gameObject.GetComponent<ManagerScript>();
         
     }
-    
-    
 
-    void FixedUpdate()
+    private void Update()
     {
-        RaycastHit rH;
-        Ray moveRay = Camera.main.ScreenPointToRay(Input.mousePosition);
-
         if (Input.GetKeyDown(KeyCode.Keypad1))
         {
             selectedAlien = Aliens[0];
@@ -51,6 +46,35 @@ public class ControlScript : MonoBehaviour
             selectedAlien = Aliens[2];
 
         }
+    }
+
+    public void ChooseAlien(int i)
+    {
+        if (i == 0)
+        {
+            selectedAlien = Aliens[0];
+
+        }
+        else if (i == 1)
+        {
+            selectedAlien = Aliens[1];
+
+        }
+        else if (i == 2)
+        {
+            selectedAlien = Aliens[2];
+
+        }
+    }
+
+
+
+    void FixedUpdate()
+    {
+        RaycastHit rH;
+        Ray moveRay = Camera.main.ScreenPointToRay(Input.mousePosition);
+
+        
 
         var AS = selectedAlien.GetComponent<AlienMovement>().thisAlienAgent;
 

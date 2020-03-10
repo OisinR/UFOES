@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
-
+using UnityEngine.EventSystems;
 
 public class AlienMovement : MonoBehaviour
 {
@@ -55,7 +55,7 @@ public class AlienMovement : MonoBehaviour
         
         if (Physics.Raycast(moveRay, out rH))
         {
-            if (rH.collider.gameObject.tag == "Floor")
+            if (rH.collider.gameObject.tag == "Floor" && !EventSystem.current.IsPointerOverGameObject())
             {
 
                 if (thisAlienAgent.CalculatePath(rH.point, path))
