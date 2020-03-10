@@ -1099,6 +1099,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: BlueAlien
       objectReference: {fileID: 0}
+    - target: {fileID: 7047776206534436716, guid: 4adb6efb79cac784984594ba93e65004,
+        type: 3}
+      propertyPath: m_TagString
+      value: Alien
+      objectReference: {fileID: 0}
     - target: {fileID: 7047776206534436717, guid: 4adb6efb79cac784984594ba93e65004,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1342,6 +1347,21 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 80
   m_CollisionDetection: 0
+--- !u!114 &100077629
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 100077622}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 678b16d08bea3484693821f8461cbde6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hasItem: 0
+  canDisplay: 0
+  itemNum: 0
 --- !u!1 &106987466
 GameObject:
   m_ObjectHideFlags: 0
@@ -2677,6 +2697,7 @@ GameObject:
   - component: {fileID: 284370668}
   - component: {fileID: 284370670}
   - component: {fileID: 284370669}
+  - component: {fileID: 284370671}
   m_Layer: 0
   m_Name: GameController
   m_TagString: Manager
@@ -2754,6 +2775,27 @@ MonoBehaviour:
   energyPool: 60
   replenRate: 10
   playerTurn: 1
+--- !u!114 &284370671
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 284370666}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d6bbc8308f4e92243a61b00127f9cb13, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  items:
+  - {fileID: 21300000, guid: 43f4734697590bd4e863937057634133, type: 3}
+  - {fileID: 21300000, guid: 611a79ab6dcd87a4189f5365f8da2007, type: 3}
+  - {fileID: 21300000, guid: f4cd854737fe5a04ca5f5df0c04d32b6, type: 3}
+  - {fileID: 21300000, guid: 1a8a036535d93c44bad28ab0dad7021c, type: 3}
+  - {fileID: 21300000, guid: 0446dded3a3a7c344b9d272a9bed935f, type: 3}
+  - {fileID: 21300000, guid: 36ca55a3d60a2e44f86a1485541e9e8d, type: 3}
+  - {fileID: 21300000, guid: a35da13ad1ac4cc4eb842ef7ee4e39d2, type: 3}
+  display: {fileID: 930982278}
 --- !u!1 &290030908
 GameObject:
   m_ObjectHideFlags: 0
@@ -6471,6 +6513,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: GreenAlien
       objectReference: {fileID: 0}
+    - target: {fileID: 7047776206534436716, guid: 4adb6efb79cac784984594ba93e65004,
+        type: 3}
+      propertyPath: m_TagString
+      value: Alien
+      objectReference: {fileID: 0}
     - target: {fileID: 7047776206534436717, guid: 4adb6efb79cac784984594ba93e65004,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -6714,6 +6761,21 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 80
   m_CollisionDetection: 0
+--- !u!114 &701493340
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 701493333}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 678b16d08bea3484693821f8461cbde6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hasItem: 0
+  canDisplay: 0
+  itemNum: 0
 --- !u!1 &707436042
 GameObject:
   m_ObjectHideFlags: 0
@@ -7916,6 +7978,21 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1563363429}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &825744705
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 825744698}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 678b16d08bea3484693821f8461cbde6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hasItem: 0
+  canDisplay: 0
+  itemNum: 0
 --- !u!1 &860502119
 GameObject:
   m_ObjectHideFlags: 0
@@ -8767,7 +8844,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -10491,6 +10568,38 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 84efa61d044072946ac202240dafe6ba, type: 3}
+--- !u!1 &1131539363 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: -927199367670048503, guid: 84efa61d044072946ac202240dafe6ba,
+    type: 3}
+  m_PrefabInstance: {fileID: 1131539362}
+  m_PrefabAsset: {fileID: 0}
+--- !u!65 &1131539364
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1131539363}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 218.77725, y: 136.06598, z: 153.9401}
+  m_Center: {x: 0, y: -6.42674, z: 65.47575}
+--- !u!114 &1131539365
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1131539363}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ae2155f4cc83f034f8918bbcb29d63d0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  techItemNum: 2
 --- !u!1 &1140918978
 GameObject:
   m_ObjectHideFlags: 0
@@ -13341,6 +13450,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: RedAlien
+      objectReference: {fileID: 0}
+    - target: {fileID: 7047776206534436716, guid: 4adb6efb79cac784984594ba93e65004,
+        type: 3}
+      propertyPath: m_TagString
+      value: Alien
       objectReference: {fileID: 0}
     - target: {fileID: 7047776206534436717, guid: 4adb6efb79cac784984594ba93e65004,
         type: 3}

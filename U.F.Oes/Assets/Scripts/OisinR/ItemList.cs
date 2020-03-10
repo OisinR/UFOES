@@ -10,12 +10,7 @@ public class ItemList : MonoBehaviour
 
     public static int spriteNum;
 
-    void Start()
-    {
-        
-    }
 
-    // Update is called once per frame
     void Update()
     {
         display.overrideSprite = items[spriteNum];

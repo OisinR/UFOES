@@ -99,8 +99,8 @@ public class ControlScript : MonoBehaviour
                     //Debug.Log("Overplayer");
                     if(Input.GetMouseButtonDown(0))
                     {
-                        selectedAlien = rH.collider.gameObject.transform.parent.gameObject;
-                        Debug.Log(selectedAlien.name);
+                        //selectedAlien = rH.collider.gameObject.transform.parent.gameObject;
+                        //Debug.Log(selectedAlien.name);
                     }
                     
                 }

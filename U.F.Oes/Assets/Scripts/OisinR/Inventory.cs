@@ -10,13 +10,22 @@ public class Inventory : MonoBehaviour
 
     void Update()
     {
+        if(CamControllerOis.target == gameObject)
+        {
+            canDisplay = true;
+        }
+        else
+        {
+            canDisplay = false;
+        }
         if(hasItem && canDisplay)
         {
             ItemList.spriteNum = itemNum;
         }
-        else
+        if(canDisplay && !hasItem)
         {
-
+            ItemList.spriteNum = 0;
         }
+
     }
 }

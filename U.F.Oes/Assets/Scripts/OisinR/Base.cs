@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class Base : MonoBehaviour
 {
-    public Text h, l;
+
 
     // Start is called before the first frame update
     void Start()

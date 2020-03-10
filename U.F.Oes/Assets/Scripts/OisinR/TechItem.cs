@@ -9,13 +9,12 @@ public class TechItem : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        Debug.Log(1);
         if(other.gameObject.tag == "Alien")
         {
-            Debug.Log(2);
             if (!other.gameObject.GetComponent<Inventory>().hasItem)
             {
                 other.gameObject.GetComponent<Inventory>().itemNum = techItemNum;
+                other.gameObject.GetComponent<Inventory>().hasItem = true;
                 gameObject.SetActive(false);
             }
 
