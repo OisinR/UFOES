@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 4846554560067675783}
   - component: {fileID: 4474727614613626033}
   - component: {fileID: 7864943450530439240}
+  - component: {fileID: 7396291920302098439}
   m_Layer: 0
   m_Name: shower
   m_TagString: Untagged
@@ -79,3 +80,16 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!65 &7396291920302098439
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8437830804867175572}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 23.757397, y: 24.95126, z: 56.453876}
+  m_Center: {x: 0.028279303, y: -0.62082016, z: 25.07677}

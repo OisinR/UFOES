@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 933372143962813590}
   - component: {fileID: 8191774743107128992}
   - component: {fileID: 2491492048610341465}
+  - component: {fileID: 1867770011049382767}
   m_Layer: 0
   m_Name: Oven
   m_TagString: Untagged
@@ -79,3 +80,16 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!65 &1867770011049382767
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4228696285155362437}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 30.157393, y: 31.513014, z: 26.992243}
+  m_Center: {x: 0, y: 0.6778137, z: 13.496121}

@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 2547713141757305674}
   - component: {fileID: 6773498663873730940}
   - component: {fileID: 953853064644470149}
+  - component: {fileID: -9103937028759578291}
   m_Layer: 0
   m_Name: TV
   m_TagString: Untagged
@@ -79,3 +80,16 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!65 &-9103937028759578291
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1513229550742344025}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 59.833797, y: 7.7813225, z: 43.038567}
+  m_Center: {x: -0.00000095367426, y: 1.6495055, z: 9.50565}
