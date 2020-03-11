@@ -198,7 +198,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 176707896}
   m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 7.9, y: 57.4, z: -43.1}
+  m_LocalPosition: {x: 11.5, y: 29.74, z: -43.1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -322,7 +322,7 @@ Light:
   m_Type: 1
   m_Shape: 0
   m_Color: {r: 1, g: 0.95686275, b: 0.8392157, a: 1}
-  m_Intensity: 0.48
+  m_Intensity: 0.19
   m_Range: 10
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
@@ -597,7 +597,7 @@ Light:
   m_Type: 1
   m_Shape: 0
   m_Color: {r: 1, g: 0.95686275, b: 0.8392157, a: 1}
-  m_Intensity: 1
+  m_Intensity: 0.6
   m_Range: 10
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
@@ -1291,7 +1291,7 @@ PrefabInstance:
     - target: {fileID: 3010109892721197178, guid: 67593116dcf00d04da2233ec3512c5ad,
         type: 3}
       propertyPath: m_Name
-      value: HairbrushObject
+      value: HairbrushWithAnim
       objectReference: {fileID: 0}
     - target: {fileID: 3010109892721197179, guid: 67593116dcf00d04da2233ec3512c5ad,
         type: 3}
@@ -1633,21 +1633,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 4295858037904704227, guid: b5a24ecbc7caa2f4ca312a2deb177919,
-        type: 3}
-      propertyPath: m_LocalRotation.x
-      value: -0.7071068
-      objectReference: {fileID: 0}
-    - target: {fileID: 4295858037904704227, guid: b5a24ecbc7caa2f4ca312a2deb177919,
-        type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 0.7071068
-      objectReference: {fileID: 0}
-    - target: {fileID: 4295858037904704227, guid: b5a24ecbc7caa2f4ca312a2deb177919,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 4880974905108591297, guid: b5a24ecbc7caa2f4ca312a2deb177919,
         type: 3}
       propertyPath: m_Name
@@ -1993,21 +1978,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 3194704566019542991, guid: 11d277ccf8abe6d4db948b45998823e1,
-        type: 3}
-      propertyPath: m_LocalRotation.x
-      value: -0.7071068
-      objectReference: {fileID: 0}
-    - target: {fileID: 3194704566019542991, guid: 11d277ccf8abe6d4db948b45998823e1,
-        type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 0.7071068
-      objectReference: {fileID: 0}
-    - target: {fileID: 3194704566019542991, guid: 11d277ccf8abe6d4db948b45998823e1,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 7057719920641901244, guid: 11d277ccf8abe6d4db948b45998823e1,
         type: 3}
       propertyPath: m_Name
