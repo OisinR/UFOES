@@ -27,7 +27,7 @@ public class CamControllerOis : MonoBehaviour
 
         //scroll
         minY = target.transform.position.y + 10;
-        maxY = target.transform.position.y + 50;
+        maxY = target.transform.position.y + 80;
 
         Vector3 newPos = Vector3.Lerp(transform.position, transform.position + (Input.GetAxis("Horizontal") * Vector3.forward) + (Input.GetAxis("Vertical") * Vector3.left) +
                                         (-Input.mouseScrollDelta.y * Vector3.up * 4f), moveSpeed);

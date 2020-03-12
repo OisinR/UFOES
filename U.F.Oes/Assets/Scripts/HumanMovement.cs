@@ -5,6 +5,7 @@ using UnityEngine.AI;
 
 public class HumanMovement : MonoBehaviour
 {
+    float timer = 2f;
     Animator anim;
    
     [Header("Detection")]
@@ -20,6 +21,7 @@ public class HumanMovement : MonoBehaviour
 
     #region Human Nav Mesh
     [Header("Paths and Following")]
+    public PathObject[] paths;
     [SerializeField] PathObject KitchenPath;
     [SerializeField] PathObject LivingPath;
     [SerializeField] PathObject BathroomPath;
@@ -45,8 +47,9 @@ public class HumanMovement : MonoBehaviour
         detectionRay = new Ray();
         myManager = GameObject.FindGameObjectWithTag("Manager").GetComponent<ManagerScript>();
         humanNavAgent = this.gameObject.GetComponent<NavMeshAgent>();
+
         CurrentPath = KitchenPath;
-        CurrentPathPoint = 0;
+        //CurrentPathPoint = 0;
         InvokeRepeating("AlienDetection", 2f, 2f);
 
     }
@@ -55,32 +58,43 @@ public class HumanMovement : MonoBehaviour
 
     private void FixedUpdate()
     {
+        var pP = this.gameObject.GetComponent<PathPatroler>();
         if (myManager.playerTurn == false)
         {
             switch (CurrentPathIndex)
             {
                 case 1:
                     CurrentPath = KitchenPath;
+                    pP.currentPath = KitchenPath;
                     break;
                 case 2:
                     CurrentPath = GardenPath;
+                    pP.currentPath = GardenPath;
                     break;
                 case 3:
                     CurrentPath = BathroomPath;
+                    pP.currentPath = BathroomPath;
                     break;
                 case 4:
                     CurrentPath = BedroomPath;
+                    pP.currentPath = BedroomPath;
                     break;
                 case 5:
                     CurrentPath = LivingPath;
+                    pP.currentPath = LivingPath;
                     break;
             }
 
-            MoveToWaypoint(CurrentPath);
+            
             //AlienDetection();
         }
+        MoveToWaypoint(CurrentPath);
     }
     
+    void SwitchPoint()
+    {
+        CurrentPathIndex = Random.Range(1, 6);
+    }
 
     void MoveToWaypoint(PathObject following)
     {
@@ -91,23 +105,41 @@ public class HumanMovement : MonoBehaviour
         if (Vector3.Distance(transform.position, destPoint.position) < 2f)
         {
             anim.SetBool("Walk", false);
-            ActivateCheck=true;
-            if (CurrentPathPoint < following.pathPoints.Count - 1)
+
+
+            if (timer <= 0)
             {
-                CurrentPathPoint++;
+                if (CurrentPathPoint < following.pathPoints.Count - 1)
+                {
+                    
+                    CurrentPathPoint++;
+                }
+                else
+                {
+                    Debug.Log("Switching");
+
+                    //CurrentPathIndex = Random.Range(1, 6);
+                    CurrentPathPoint = 0;
+
+                }
+                timer = 2f;
             }
             else
             {
-                Debug.Log("Switching");
-                
-                CurrentPathIndex = Random.Range(1, 6);
-                CurrentPathPoint = 0;
-
+                timer -= Time.deltaTime;
             }
+            
+        }
+
+        if (myManager.playerTurn == false)
+        {
+            CurrentPath = paths[Random.Range(0, 5)];
+            Debug.Log("msjgndojgndg");
             myManager.playerTurn = true;
             myManager.energyPool += myManager.replenRate;
         }
     }
+
 
 
     void AlienDetection()

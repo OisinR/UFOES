@@ -25,8 +25,8 @@ public class ManagerScript : MonoBehaviour
         //debugging for energy bar testing
         if(Input.GetKeyDown(KeyCode.R))
         {
-            maxEnergy = 100f;
-            energyPool = 100f;
+            //maxEnergy = 100f;
+            energyPool += 100f;
         }
 
         if(powerup)
