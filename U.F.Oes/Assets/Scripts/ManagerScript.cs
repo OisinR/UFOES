@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class ManagerScript : MonoBehaviour
 {
@@ -12,18 +13,53 @@ public class ManagerScript : MonoBehaviour
     public float maxEnergy, replenRate, currentAlien, energyPool;
     public static float maxEnergy2;
 
+    public static AudioSource ManagerAS;
+
+    public AudioClip lightswitch, collect, death, win, over, basecomplete;
+
     public static bool powerup;
 
     public bool playerTurn = true;
 
+    AlienMovement[] Aliens;
+
     private void Awake()
     {
         maxEnergy2 = maxEnergy;
+        ManagerAS = this.gameObject.GetComponent<AudioSource>();
         playerTurn = true;
+        Aliens = FindObjectsOfType<AlienMovement>();
     }
-
+    bool anyActive = true;
+    float restartTimer = 2f;
     private void Update()
     {
+        foreach(AlienMovement a  in Aliens)
+        {
+            if(a.gameObject.activeSelf == true)
+            {
+                anyActive = true;
+                break;
+            }
+            else
+            {
+                anyActive = false;
+            }
+            
+        }
+        if(anyActive==false)
+        {
+            ManagerAS.volume = 0.1f;
+            ManagerAS.PlayOneShot(over);
+            restartTimer -= Time.deltaTime;
+
+            if(restartTimer<0f)
+            {
+                SceneManager.LoadScene(0);
+            }
+
+        }
+
         //debugging for energy bar testing
         if(Input.GetKeyDown(KeyCode.R))
         {
@@ -37,6 +73,7 @@ public class ManagerScript : MonoBehaviour
             //energyPool += replenRate;
             powerup = false;
         }
+
 
         
     }

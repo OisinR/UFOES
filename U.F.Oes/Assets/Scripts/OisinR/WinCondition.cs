@@ -10,11 +10,19 @@ public class WinCondition : MonoBehaviour
 
     bool won;
 
+    ManagerScript myManager;
+
+    private void Awake()
+    {
+        myManager = FindObjectOfType<ManagerScript>();
+    }
+
     void Update()
     {
         if(a.complete && b.complete && c.complete)
         {
             won = true;
+            ManagerScript.ManagerAS.PlayOneShot(myManager.win);
             winTxt.SetActive(true);
         }
     }

@@ -7,26 +7,21 @@ public class HumanLights : MonoBehaviour
 
     public LightItUp Lighting;
 
+    ManagerScript myManager;
 
-    // Start is called before the first frame update
-    void Start()
+    private void Awake()
     {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        myManager = FindObjectOfType<ManagerScript>();
     }
 
 
 
-    private void OnTriggerStay(Collider other)
+    private void OnTriggerEnter(Collider other)
     {
         if(other.gameObject.tag == "Human")
         {
             Lighting.LightSwitch = true;
+            ManagerScript.ManagerAS.PlayOneShot(myManager.lightswitch);
         }
     }
 
@@ -36,6 +31,7 @@ public class HumanLights : MonoBehaviour
         if (other.gameObject.tag == "Human")
         {
             Lighting.LightSwitch = false;
+            ManagerScript.ManagerAS.PlayOneShot(myManager.lightswitch);
         }
     }
 }

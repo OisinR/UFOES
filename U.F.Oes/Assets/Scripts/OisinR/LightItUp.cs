@@ -21,6 +21,8 @@ public class LightItUp : MonoBehaviour
             {
                 m.EnableKeyword("_EMISSION");
             }
+            
+
         }
         else
         {
