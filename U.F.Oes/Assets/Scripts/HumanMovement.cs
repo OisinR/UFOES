@@ -40,6 +40,7 @@ public class HumanMovement : MonoBehaviour
     ManagerScript myManager;
     private void Awake()
     {
+        InvokeRepeating("ChangRoom", 5, 5);
         anim = GetComponentInChildren<Animator>();
         SafeDistance = DetectionRadius;
         SC = this.GetComponent<SphereCollider>();
@@ -54,6 +55,10 @@ public class HumanMovement : MonoBehaviour
 
     }
 
+    void ChangeRoom()
+    {
+        CurrentPath = paths[Random.Range(0, 5)];
+    }
     
 
     private void FixedUpdate()
@@ -130,14 +135,6 @@ public class HumanMovement : MonoBehaviour
             }
             
         }
-
-        if (myManager.playerTurn == false)
-        {
-            CurrentPath = paths[Random.Range(0, 5)];
-            Debug.Log("msjgndojgndg");
-            myManager.playerTurn = true;
-            myManager.energyPool += myManager.replenRate;
-        }
     }
 
 
@@ -179,7 +176,7 @@ public class HumanMovement : MonoBehaviour
 
                 }
             }
-            Debug.Log("Deactivated");
+            
             
 
 
