@@ -7,6 +7,7 @@ using UnityEngine.SceneManagement;
 
 public class ControlScript : MonoBehaviour
 {
+    public static bool powerup;
     ManagerScript myManager;
     [SerializeField] GameObject Alien1, Alien2, Alien3;
     public GameObject selectedAlien;
@@ -14,6 +15,7 @@ public class ControlScript : MonoBehaviour
     [SerializeField] Image energyPool, potentialEnergy;
     NavMeshPath path;
     LayerMask onlyRaycastMask;
+    AlienMovement mvmtScript;
     //[SerializeField] float distanceRemaining, distanceTravelled, distanceTotal, energyConsumed;
 
     void Start()
@@ -33,6 +35,12 @@ public class ControlScript : MonoBehaviour
 
     private void Update()
     {
+        if(powerup)
+        {
+            powerup = false;
+            mvmtScript.energyPool += 20;
+        }
+
         if(Input.GetKeyDown(KeyCode.Escape))
         {
             SceneManager.LoadScene(0);
@@ -54,6 +62,7 @@ public class ControlScript : MonoBehaviour
             selectedAlien = Aliens[2];
 
         }
+        mvmtScript = selectedAlien.GetComponent<AlienMovement>();
         CamControllerOis.target = selectedAlien;
     }
 
@@ -74,7 +83,7 @@ public class ControlScript : MonoBehaviour
             selectedAlien = Aliens[2];
 
         }
-
+        mvmtScript = selectedAlien.GetComponent<AlienMovement>();
 
     }
 
@@ -111,8 +120,8 @@ public class ControlScript : MonoBehaviour
     }
     void EnergyBarUpdates()
     {
-        energyPool.transform.localScale = new Vector3(energyPool.transform.localScale.x, myManager.energyPool / myManager.maxEnergy, energyPool.transform.localScale.z);
-        potentialEnergy.transform.localScale = new Vector3(potentialEnergy.transform.localScale.x, Mathf.Min(selectedAlien.GetComponent<AlienMovement>().potentialDistance/ myManager.energyPool,1f), potentialEnergy.transform.localScale.z);
+        energyPool.transform.localScale = new Vector3(energyPool.transform.localScale.x, mvmtScript.energyPool / myManager.maxEnergy, energyPool.transform.localScale.z);
+        potentialEnergy.transform.localScale = new Vector3(potentialEnergy.transform.localScale.x, Mathf.Min(selectedAlien.GetComponent<AlienMovement>().potentialDistance/ mvmtScript.energyPool,1f), potentialEnergy.transform.localScale.z);
 
     }
 
