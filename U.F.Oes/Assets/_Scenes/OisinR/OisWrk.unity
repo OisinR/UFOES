@@ -1142,7 +1142,7 @@ PrefabInstance:
     - target: {fileID: 7047776206534436717, guid: 4adb6efb79cac784984594ba93e65004,
         type: 3}
       propertyPath: m_RootOrder
-      value: 12
+      value: 11
       objectReference: {fileID: 0}
     - target: {fileID: 7047776206534436717, guid: 4adb6efb79cac784984594ba93e65004,
         type: 3}
@@ -1158,6 +1158,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8553934569548750998, guid: 4adb6efb79cac784984594ba93e65004,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 8585966900863843335, guid: 4adb6efb79cac784984594ba93e65004,
         type: 3}
@@ -1446,6 +1451,17 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 284370668}
         m_MethodName: ChooseAlien
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 284370669}
+        m_MethodName: Button
         m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1850,6 +1866,17 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 284370668}
         m_MethodName: ChooseAlien
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 2
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 284370669}
+        m_MethodName: Button
         m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2734,9 +2761,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aa703c431fe92f74ba4299de41fb06d0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Alien1: {fileID: 825744698}
-  Alien2: {fileID: 100077622}
-  Alien3: {fileID: 701493333}
+  Alien1: {fileID: 100077622}
+  Alien2: {fileID: 701493333}
+  Alien3: {fileID: 825744698}
   selectedAlien: {fileID: 0}
   Aliens: []
   energyPool: {fileID: 346659867}
@@ -2753,12 +2780,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 68218f9aabedfdd4b85a5eb824bad1fa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  minY: 0
-  maxY: 0
-  minX: 0
-  maxX: 0
-  minZ: 0
-  maxZ: 0
+  targets:
+  - {fileID: 100077622}
+  - {fileID: 701493333}
+  - {fileID: 825744698}
+  minY: 10
+  maxY: 80
+  minX: -20
+  maxX: 140
+  minZ: -104
+  maxZ: 57
   moveSpeed: 0.5
 --- !u!114 &284370670
 MonoBehaviour:
@@ -3275,6 +3306,17 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 284370668}
         m_MethodName: ChooseAlien
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 1
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 284370669}
+        m_MethodName: Button
         m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -6561,7 +6603,7 @@ PrefabInstance:
     - target: {fileID: 7047776206534436717, guid: 4adb6efb79cac784984594ba93e65004,
         type: 3}
       propertyPath: m_RootOrder
-      value: 13
+      value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 7047776206534436717, guid: 4adb6efb79cac784984594ba93e65004,
         type: 3}
@@ -6577,6 +6619,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8553934569548750998, guid: 4adb6efb79cac784984594ba93e65004,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 8585966900863843335, guid: 4adb6efb79cac784984594ba93e65004,
         type: 3}
@@ -13163,7 +13210,7 @@ PrefabInstance:
     - target: {fileID: 7047776206534436717, guid: 4adb6efb79cac784984594ba93e65004,
         type: 3}
       propertyPath: m_RootOrder
-      value: 11
+      value: 13
       objectReference: {fileID: 0}
     - target: {fileID: 7047776206534436717, guid: 4adb6efb79cac784984594ba93e65004,
         type: 3}
@@ -13179,6 +13226,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8553934569548750998, guid: 4adb6efb79cac784984594ba93e65004,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 6
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4adb6efb79cac784984594ba93e65004, type: 3}
@@ -14193,7 +14245,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1742911315
 RectTransform:
   m_ObjectHideFlags: 0

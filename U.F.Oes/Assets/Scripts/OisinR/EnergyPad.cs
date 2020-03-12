@@ -12,7 +12,7 @@ public class EnergyPad : MonoBehaviour
     {
         if (!activated && other.gameObject.tag == "Alien")
         {
-            ManagerScript.powerup = true;
+            ControlScript.powerup = true;
             activated = true;
             gameObject.SetActive(false);
         }
