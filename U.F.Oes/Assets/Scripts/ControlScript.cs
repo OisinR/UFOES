@@ -7,6 +7,7 @@ using UnityEngine.SceneManagement;
 
 public class ControlScript : MonoBehaviour
 {
+    public static bool powerup;
     ManagerScript myManager;
     [SerializeField] GameObject Alien1, Alien2, Alien3;
     public GameObject selectedAlien;
@@ -34,6 +35,12 @@ public class ControlScript : MonoBehaviour
 
     private void Update()
     {
+        if(powerup)
+        {
+            powerup = false;
+            mvmtScript.energyPool += 20;
+        }
+
         if(Input.GetKeyDown(KeyCode.Escape))
         {
             SceneManager.LoadScene(0);
