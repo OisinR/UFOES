@@ -40,7 +40,7 @@ public class HumanMovement : MonoBehaviour
     ManagerScript myManager;
     private void Awake()
     {
-        InvokeRepeating("ChangRoom", 5, 5);
+        InvokeRepeating("ChangeRoom", 5, 5);
         anim = GetComponentInChildren<Animator>();
         SafeDistance = DetectionRadius;
         SC = this.GetComponent<SphereCollider>();
@@ -58,6 +58,7 @@ public class HumanMovement : MonoBehaviour
     void ChangeRoom()
     {
         CurrentPath = paths[Random.Range(0, 5)];
+        Debug.Log(12312313132);
     }
     
 

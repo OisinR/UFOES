@@ -961,6 +961,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2fd32c262b11ac44ba3cc0dacffe8c0d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  energyPool: 0
   distanceRemaining: 0
   distanceTravelled: 0
   distanceTotal: 0
@@ -1195,6 +1196,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2fd32c262b11ac44ba3cc0dacffe8c0d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  energyPool: 0
   distanceRemaining: 0
   distanceTravelled: 0
   distanceTotal: 0
@@ -2765,7 +2767,10 @@ MonoBehaviour:
   Alien2: {fileID: 701493333}
   Alien3: {fileID: 825744698}
   selectedAlien: {fileID: 0}
-  Aliens: []
+  Aliens:
+  - {fileID: 100077622}
+  - {fileID: 701493333}
+  - {fileID: 825744698}
   energyPool: {fileID: 346659867}
   potentialEnergy: {fileID: 1641298211}
 --- !u!114 &284370669
@@ -2804,8 +2809,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxEnergy: 60
-  energyPool: 60
   replenRate: 10
+  currentAlien: 0
+  energyPool: 60
   playerTurn: 1
 --- !u!114 &284370671
 MonoBehaviour:
@@ -5555,6 +5561,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2fd32c262b11ac44ba3cc0dacffe8c0d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  energyPool: 0
   distanceRemaining: 0
   distanceTravelled: 0
   distanceTotal: 0
@@ -6656,6 +6663,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2fd32c262b11ac44ba3cc0dacffe8c0d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  energyPool: 0
   distanceRemaining: 0
   distanceTravelled: 0
   distanceTotal: 0
@@ -7958,6 +7966,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2fd32c262b11ac44ba3cc0dacffe8c0d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  energyPool: 0
   distanceRemaining: 0
   distanceTravelled: 0
   distanceTotal: 0
@@ -9234,7 +9243,12 @@ MonoBehaviour:
   DetectionRadius: 20.7
   SC: {fileID: 0}
   FOVResolution: 60
-  paths: []
+  paths:
+  - {fileID: 967702248}
+  - {fileID: 80342042}
+  - {fileID: 1486369450}
+  - {fileID: 1639596321}
+  - {fileID: 1779323886}
   KitchenPath: {fileID: 967702248}
   LivingPath: {fileID: 80342042}
   BathroomPath: {fileID: 1486369450}
