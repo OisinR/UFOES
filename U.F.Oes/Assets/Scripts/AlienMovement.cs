@@ -8,6 +8,7 @@ public class AlienMovement : MonoBehaviour
 {
     Color invalidPathColor= new Color(1,0,0), validPathColor = new Color(0,1,0);
 
+    public float energyPool;
     Transform targetPos;
     NavMeshPath path, agentCurrentPath;
     public float distanceRemaining, distanceTravelled, distanceTotal, energyConsumed, potentialDistance;
@@ -19,6 +20,8 @@ public class AlienMovement : MonoBehaviour
 
     void Start()
     {
+        
+        energyPool = 100;
         anim = GetComponentInChildren<Animator>();
 
         if(this.gameObject.GetComponent<LineRenderer>()==null)
@@ -33,8 +36,18 @@ public class AlienMovement : MonoBehaviour
         agentCurrentPath = new NavMeshPath();
     }
 
+    private void FixedUpdate()
+    {
+        energyPool += 0.02f;
+    }
+
+
     void LateUpdate()
     {
+        if(energyPool > ManagerScript.maxEnergy2)
+        {
+            energyPool = ManagerScript.maxEnergy2;
+        }
         if (ManagerObject.GetComponent<ManagerScript>().playerTurn == true)
         {
 
@@ -66,7 +79,7 @@ public class AlienMovement : MonoBehaviour
 
                     targetPos.position = rH.point;//debugging
                     potentialDistance = PathDistance(path);
-                    if(potentialDistance > ManagerObject.GetComponent<ManagerScript>().energyPool)
+                    if(potentialDistance > energyPool)
                     {
                         myNavLine.GetComponent<LineRenderer>().materials[0].color = (Color.red);
 
@@ -76,16 +89,14 @@ public class AlienMovement : MonoBehaviour
                         myNavLine.GetComponent<LineRenderer>().materials[0].color = (Color.green);
                     }
 
-                    if (Input.GetMouseButtonDown(0) &&
-                        potentialDistance<ManagerObject.GetComponent<ManagerScript>().energyPool && 
-                        this.thisAlienAgent.isStopped==true)
+                    if (Input.GetMouseButtonDown(0) && !(energyPool - potentialDistance < 0) && this.thisAlienAgent.isStopped==true)
                     {
                         anim.SetBool("Walk", true);
                         thisAlienAgent.isStopped = false;
                         agentCurrentPath = path;
                         thisAlienAgent.SetPath(agentCurrentPath);
                         distanceTotal = PathDistance(thisAlienAgent.path);
-                        ManagerObject.GetComponent<ManagerScript>().energyPool -= distanceTotal;
+                        energyPool -= distanceTotal;
                     }
                     
                 }

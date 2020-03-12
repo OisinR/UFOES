@@ -4,6 +4,10 @@ using UnityEngine;
 
 public class CamControllerOis : MonoBehaviour
 {
+    //Reminder of stuff to do. put in text that appears and fades whenever you go into a room. have it be center bottom screen.
+    //TIP: Switch to other aliens when low on energy; appears under aien selection
+
+
     public static GameObject target;
     public GameObject[] targets;
     public  float minY, maxY, minX, maxX, minZ, maxZ, moveSpeed;
