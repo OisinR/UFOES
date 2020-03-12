@@ -17,7 +17,7 @@ public class HumanMovement : MonoBehaviour
     [SerializeField] SphereCollider SC;
     #endregion
 
-    [SerializeField] float FOVResolution;
+    [SerializeField] float FOVResolution, waitTime;
 
     #region Human Nav Mesh
     [Header("Paths and Following")]
@@ -40,7 +40,7 @@ public class HumanMovement : MonoBehaviour
     ManagerScript myManager;
     private void Awake()
     {
-        InvokeRepeating("ChangeRoom", 5, 5);
+        InvokeRepeating("ChangeRoom", 20, 20f);
         anim = GetComponentInChildren<Animator>();
         SafeDistance = DetectionRadius;
         SC = this.GetComponent<SphereCollider>();
@@ -96,7 +96,13 @@ public class HumanMovement : MonoBehaviour
         }
         MoveToWaypoint(CurrentPath);
     }
-    
+
+    private void LateUpdate()
+    {
+        transform.rotation = Quaternion.LookRotation(this.gameObject.GetComponent<NavMeshAgent>().velocity.normalized);
+
+    }
+
     void SwitchPoint()
     {
         CurrentPathIndex = Random.Range(1, 6);
@@ -128,7 +134,7 @@ public class HumanMovement : MonoBehaviour
                     CurrentPathPoint = 0;
 
                 }
-                timer = 2f;
+                timer = waitTime;
             }
             else
             {
@@ -225,6 +231,7 @@ public class HumanMovement : MonoBehaviour
             {
                 ActivateCheck = false;
                 Alien.SetActive(false);
+                ManagerScript.ManagerAS.PlayOneShot(myManager.death);
                 return false;
             }
             else

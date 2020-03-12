@@ -12,6 +12,14 @@ public class Base : MonoBehaviour
     public GameObject[] itemsDisplay;
     Inventory script;
 
+    ManagerScript myManager;
+
+    private void Awake()
+    {
+        myManager = FindObjectOfType<ManagerScript>();
+    }
+
+
     private void Update()
     {
         if(collected1)
@@ -26,6 +34,7 @@ public class Base : MonoBehaviour
         
         if(collected1 && collected2)
         {
+            ManagerScript.ManagerAS.PlayOneShot(myManager.basecomplete);
             complete = true;
         }
 

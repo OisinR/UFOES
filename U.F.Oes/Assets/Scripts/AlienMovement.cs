@@ -12,6 +12,7 @@ public class AlienMovement : MonoBehaviour
     Transform targetPos;
     NavMeshPath path, agentCurrentPath;
     public float distanceRemaining, distanceTravelled, distanceTotal, energyConsumed, potentialDistance;
+    [SerializeField] float normalReplen, halfReplen, currentReplen;
     [SerializeField] GameObject myNavLine, myDistance;
     public NavMeshAgent thisAlienAgent;
     GameObject ManagerObject;
@@ -35,10 +36,27 @@ public class AlienMovement : MonoBehaviour
         path = new NavMeshPath();
         agentCurrentPath = new NavMeshPath();
     }
-
     private void FixedUpdate()
     {
-        energyPool += 0.02f;
+        
+        energyPool += currentReplen*Time.deltaTime;
+        if(energyPool > ManagerScript.maxEnergy2)
+        {
+            energyPool = ManagerScript.maxEnergy2;
+        }
+    }
+
+    private void OnTriggerStay(Collider collision)
+    {
+        if(collision.gameObject.tag=="AlienFloorTrigger")
+        {
+            Debug.Log(112223333444555);
+            currentReplen = halfReplen;
+        }
+        else
+        {
+            currentReplen = normalReplen;
+        }
     }
 
 
