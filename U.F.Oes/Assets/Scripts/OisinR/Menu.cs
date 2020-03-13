@@ -11,4 +11,9 @@ public class Menu : MonoBehaviour
         SceneManager.LoadScene(1);
     }
 
+    public void Avengers()
+    {
+        Debug.Log("789498349h4t3h34tthtuh");
+        Application.Quit();
+    }
 }

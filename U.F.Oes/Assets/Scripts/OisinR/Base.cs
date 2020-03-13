@@ -9,6 +9,7 @@ public class Base : MonoBehaviour
     bool collected1, collected2;
 
     public bool complete;
+    bool sound = false;
     public GameObject[] itemsDisplay;
     Inventory script;
 
@@ -32,9 +33,11 @@ public class Base : MonoBehaviour
             itemsDisplay[1].SetActive(false);
         }
         
-        if(collected1 && collected2)
+        if(collected1 && collected2 && sound== false)
         {
+            ManagerScript.ManagerAS.volume=0.1f;
             ManagerScript.ManagerAS.PlayOneShot(myManager.basecomplete);
+            sound = true;
             complete = true;
         }
 

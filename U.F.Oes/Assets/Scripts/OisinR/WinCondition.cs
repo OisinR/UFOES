@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 
 public class WinCondition : MonoBehaviour
@@ -16,6 +17,7 @@ public class WinCondition : MonoBehaviour
     {
         myManager = FindObjectOfType<ManagerScript>();
     }
+    float timer = 2f;
 
     void Update()
     {
@@ -23,6 +25,11 @@ public class WinCondition : MonoBehaviour
         {
             won = true;
             ManagerScript.ManagerAS.PlayOneShot(myManager.win);
+            timer -= Time.deltaTime;
+            if(timer<0f)
+            {
+                SceneManager.LoadScene(0);
+            }
             winTxt.SetActive(true);
         }
     }
